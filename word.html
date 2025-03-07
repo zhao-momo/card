@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>女神节祝福抽签</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffb6c1; /* 温暖的粉红色 */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            text-align: center;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 添加更明显的阴影 */
+            padding: 20px;
+            width: 300px;
+        }
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="https://q1.qlogo.cn/g?b=qq&nk=2092103728&s=160" alt="Profile Picture" class="profile-picture">
+        <h3>妈妈：</h3>
+        <div class="message" id="greeting">点击下方按钮开始抽奖！</div>
+        <div class="button" onclick="drawGreeting()">再抽一次</div>
+    </div>
+
+    <script>
+        const greetings = [
+            "节日快乐，永远年轻美丽！",
+            "愿你每天都像今天一样美好！",
+            "你是我的骄傲，谢谢你一直以来的支持！",
+            "希望你的生活充满阳光和幸福！",
+            "最美的花儿属于你，最棒的女人就是你！",
+            "感谢你在我生命中的每一天都陪伴着我。",
+            "愿你的笑容永远灿烂如春日花朵。",
+            "你是我的英雄，让我感到无比温暖。",
+            "希望你拥有世界上最美好的一天！",
+            "你是我心中的光，照亮了我所有的黑暗。",
+            "愿你在未来的日子里总有惊喜等待着你。",
+            "你是独一无二的存在，值得世界上所有的爱。",
+            "希望你每天都能感受到自己的价值。",
+            "你是我的灵感源泉，让我更加坚强自信。",
+            "愿你的每一个愿望都能够成真。",
+            "感谢你给了我最好的一切，我爱你。",
+            "你是最棒的，无论发生什么都要相信自己。",
+            "愿你在未来的日子里依然光彩照人。",
+            "你是我的榜样，我会一直学习你的优点。",
+            "希望我们的友谊长存，直到永远。",
+            "愿你的心灵永远纯净美好。",
+            "你是我的超级英雄，给了我无限的力量。",
+            "愿你的人生路途上处处有鲜花盛开。",
+            "你是我一生中最珍贵的礼物。",
+            "希望你每天都过得比昨天更好。",
+            "你是我的太阳，给我无尽的光明。",
+            "愿你笑口常开，幸福美满。",
+            "感谢你教会我许多人生道理。",
+            "你是我的梦中情人，让我魂牵梦萦。",
+            "愿你天天开心，事事顺利。",
+            "你是我心中最美的星辰。",
+            "希望你的一生都被爱包围。"
+        ];
+
+        function drawGreeting() {
+            const randomIndex = Math.floor(Math.random() * greetings.length);
+            document.getElementById('greeting').textContent = greetings[randomIndex];
+        }
+    </script>
+</body>
+</html>
+
+
+
