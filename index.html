@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Card</title>
+    <style>
+        body {
+            background-color: #ffcccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+        }
+        .card {
+            text-align: center;
+            background-color: white;
+            padding: 20px 10px; /* Increased vertical padding */
+            border-radius: 20px; /* Larger border radius */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Smaller shadow */
+            transform: scale(0.7); /* Scale down the card */
+            transform-origin: center;
+        }
+        img {
+            max-width: 80%; /* Smaller image size */
+            height: auto;
+            border-radius: 20px; /* Larger border radius */
+        }
+        .message {
+            margin-top: 10px; /* Reduced margin */
+            font-size: 1.5em; /* Smaller font size */
+            color: #ff69b4;
+        }
+        .cursor {
+            display: inline-block;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            from, to { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: explode 5s ease-in-out forwards;
+        }
+        @keyframes explode {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+            20% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(3);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img id="birthdayImage" src="https://bpic.588ku.com/templet_water_pic/19/05/28/9f87c83d3f15110742fbbf99561e0591.jpg!/fw/750/unsharp/true/compress/true" alt="Birthday Cake">
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        const messages = ["妈妈，", "今天是女神节", "我想对您说", "“女神节快乐!”", "是你教会了我做人的道理", "是你教会了我许多本领", "最后，祝你", "女神节快乐！"];
+        let currentMessageIndex = 0;
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (currentMessageIndex < messages.length) {
+                const messageElement = document.getElementById('message');
+                if (charIndex < messages[currentMessageIndex].length) {
+                    messageElement.textContent += messages[currentMessageIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 100); // Speed of typing
+                } else {
+                    if (currentMessageIndex === 0) {
+                        setTimeout(() => {
+                            messageElement.textContent = ''; // Clear the message
+                            currentMessageIndex++;
+                            charIndex = 0;
+                            typeWriter(); // Start typing the next message
+                        }, 1000); // Pause before starting the next message
+                    } else {
+                        const cursor = document.createElement('span');
+                        cursor.className = 'cursor';
+                        cursor.textContent = '|';
+                        messageElement.appendChild(cursor); // Add cursor after the last message
+                        setTimeout(() => {
+                            cursor.remove(); // Remove the cursor
+                            launchFireworks();
+                        }, 1000); // Wait for 1 second before launching fireworks
+                    }
+                }
+            }
+        }
+
+        function getRandomColor() {
+            const colors = ['#ffcc00', '#ff69b4', '#00ffff', '#32cd32', '#ffa500', '#ff00ff', '#add8e6'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        function launchFireworks() {
+            const container = document.body;
+            for (let i = 0; i < 50; i++) {
+                const firework = document.createElement('div');
+                firework.classList.add('firework');
+                firework.style.left = `${Math.random() * 100}vw`;
+                firework.style.top = `${Math.random() * 100}vh`;
+                firework.style.backgroundColor = getRandomColor(); // Random color for each firework
+                container.appendChild(firework);
+
+                // Remove the firework element after the animation ends
+                firework.addEventListener('animationend', () => {
+                    firework.remove();
+                });
+            }
+        }
+
+        window.onload = () => {
+            const img = document.getElementById('birthdayImage');
+            img.onerror = () => {
+                console.error("Failed to load image");
+            };
+            img.onload = () => {
+                typeWriter();
+            };
+        };
+    </script>
+</body>
+</html>
+
+
+
